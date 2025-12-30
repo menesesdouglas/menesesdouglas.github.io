@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Douglas Meneses - Desenvolvedor Backend</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Paleta de cores escura */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #2a2a2a;
+            --bg-card-hover: #3a3a3a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --accent: #8a2be2;
+            --accent-hover: #6a1cb9;
+            --border: #444;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: rgba(26, 26, 26, 0.85);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .bio {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-align: justify;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            border-radius: 50%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            background-color: var(--accent-hover);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50%;
+            height: 1px;
+            background-color: var(--text-secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background-color: var(--bg-card);
+            padding: 20px 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+        }
+
+        .skill-item:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-item i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .experience-item {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .experience-item .role {
+            font-weight: bold;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+        }
+
+        .experience-item .company {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .experience-item .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .experience-item p {
+            color: var(--text-primary);
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-hover);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Douglas Meneses</h1>
+            <p class="subtitle">Analista de Suporte Técnico | Estudante de Análise e Desenvolvimento de Sistemas</p>
+            <p class="bio">
+                Estudante de Análise e Desenvolvimento de Sistemas (Estácio) apaixonado por Engenharia de Software, Engenharia de Dados, Machine Learning e Administração de Banco de Dados (DBA).
+                Meu objetivo é construir uma carreira integrando arquitetura de sistemas, modelos preditivos e governança — evoluindo de desenvolvimento para soluções inteligentes e escaláveis.
+                <br><br>
+                Atualmente como Analista de Suporte Técnico Nível 1 na Splendor Informática, aplico resolução crítica de problemas, suporte ao ERP BlessSolution e gerenciamento de tickets orientado a SLA.
+                Experiências que aprimoram minha disciplina operacional, mentalidade de produto e capacidade de manter sistemas de produção de alta qualidade.
+            </p>
+
+            <div class="social-links">
+                <a href="https://github.com/menesesdouglas" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/menesesdouglas" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:menesesdouglas.fx@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fab fa-java"></i>
+                    <span>Java</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-leaf" style="color: #6db33f;"></i>
+                    <span>Spring Boot</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML</span>
+                </div>
+                 <div class="skill-item">
+                    <i class="fas fa-database" style="color: #cc2929;"></i> <!-- Cor vermelha para SQL Server -->
+                    <span>SQL Server</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database" style="color: #336791;"></i> <!-- Cor azul para PostgreSQL -->
+                    <span>PostgreSQL</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <span>API REST</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt"></i>
+                    <span>Git</span>
+                </div>
+            </div>
+        </section>
+
+         <section class="section">
+            <h2 class="section-title">Experiências Profissionais</h2>
+            <div class="experience-item">
+                <div class="role">Analista de Suporte Técnico Nível 1</div>
+                <div class="company">Splendor Informática</div>
+                <div class="date">Outubro 2025 - Presente</div>
+                <p>Atuo no suporte ao ERP BlessSolution e outros sistemas, resolvendo problemas técnicos, gerenciando tickets de acordo com SLAs e garantindo a operação contínua dos sistemas para os clientes.</p>
+            </div>
+            <div class="experience-item">
+                <div class="role">Recepcionista Hospitalar</div>
+                <div class="company">Hospital Santa Emília</div>
+                <div class="date">Julho 2024 - Presente</div>
+                <p>Atendimento e internação de pacientes em emergências geral e obstétrica. Cadastro e atualização de dados no sistema TASY. Gestão de autorizações de convênios e alocação de leitos. Emissão de relatórios e suporte administrativo.</p>
+            </div>
+            <div class="experience-item">
+                <div class="role">Especialista Relacionamento Cliente I</div>
+                <div class="company">Atento Brasil S/a</div>
+                <div class="date">Março 2023 - Agosto 2025</div>
+                <p>Suporte ao cliente para resolução de problemas e dúvidas. Gestão de pedidos, compras no aplicativo e emissão de notas fiscais. Mediação entre compradores e vendedores. Análise e processamento de reembolsos e validação de garantias. Apoio em investigações de fraude.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Marc</h3>
+                    <p>Um sistema de gestão de ponto feito inteiramente com Python e banco de dados relacional SQLite com GUI em CustomTKinter.</p>
+                </div>
+                <div class="project-card">
+                    <h3>EduTrack</h3>
+                    <p>Sistema de acompanhamento acadêmico feito com Python e banco de dados relacional SQLite.</p>
+                </div>
+                <div class="project-card">
+                    <h3>ATM in Java</h3>
+                    <p>Projeto em Java para simular um caixa eletrônico com funcionalidades básicas de saque, depósito e consulta de saldo em CLI para aprendizado.</p>
+                </div>
+                <div class="project-card">
+                    <h3>CLI To Do List</h3>
+                    <p>Um sistema To Do List em Java em CLI para aprendizado.</p>
+                </div>
+                <div class="project-card">
+                    <h3>FracCalc</h3>
+                    <p>Um sistema de cálculo de frações em C para aprendizado.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Platformer Adventure PGZero</h3>
+                    <p>Um jogo de plataforma desenvolvido com PGZero em Python para aprendizado.</p>
+                </div>
+                <div class="project-card">
+                    <h3>MarcWeb - Em Desenvolvimento</h3>
+                    <p>Um sistema de gestão de pontos web com backend feito em Java+Spring Boot, DB em PostgreSQL e frontend com HTML+Pico CSS e Javascript.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Contato</h2>
+            <div class="contact-info">
+                <p>Você pode me encontrar nas redes sociais acima ou me enviar um e-mail diretamente:</p>
+                <p><a href="mailto:menesesdouglas.fx@gmail.com">menesesdouglas.fx@gmail.com</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Douglas Meneses. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>
