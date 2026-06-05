@@ -1000,7 +1000,7 @@
         }
 
         .mobile-nav-overlay {
-            display: none;
+            visibility: hidden;
             position: fixed;
             top: 0;
             left: 0;
@@ -1009,15 +1009,44 @@
             background: rgba(17, 17, 17, 0.97);
             backdrop-filter: blur(20px);
             z-index: 105;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 2rem;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .mobile-nav-overlay.open {
+            visibility: visible;
             opacity: 1;
+        }
+        .mobile-nav-overlay .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            z-index: 106;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-nav-overlay .close-btn span {
+            position: absolute;
+            width: 28px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 2px;
+        }
+        .mobile-nav-overlay .close-btn span:nth-child(1) {
+            transform: rotate(45deg);
+        }
+        .mobile-nav-overlay .close-btn span:nth-child(2) {
+            transform: rotate(-45deg);
         }
         .mobile-nav-overlay a {
             font-family: 'Syne', sans-serif;
@@ -1240,6 +1269,10 @@
 
     <!-- ===== MOBILE NAV OVERLAY ===== -->
     <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <button class="close-btn" onclick="closeMobileNav()" aria-label="Fechar menu">
+            <span></span>
+            <span></span>
+        </button>
         <a href="#about" onclick="closeMobileNav()">Sobre</a>
         <a href="#skills" onclick="closeMobileNav()">Habilidades</a>
         <a href="#projects" onclick="closeMobileNav()">Projetos</a>
@@ -1711,21 +1744,17 @@
         }
 
         function openMobileNav() {
-            mobileOverlay.style.display = 'flex';
-            requestAnimationFrame(() => {
-                mobileOverlay.classList.add('open');
-                mobileBtn.classList.add('active');
-            });
+            mobileOverlay.classList.add('open');
+            mobileBtn.classList.add('active');
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         }
 
         function closeMobileNav() {
             mobileOverlay.classList.remove('open');
             mobileBtn.classList.remove('active');
-            setTimeout(() => {
-                mobileOverlay.style.display = 'none';
-            }, 300);
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         }
     </script>
 
