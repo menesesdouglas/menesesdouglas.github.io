@@ -1,9 +1,9 @@
-import urbanDesktop from '../assets/projetos/urban-fade-desktop.jpg';
-import urbanMobile from '../assets/projetos/urban-fade-mobile.jpg';
-import gentlemanDesktop from '../assets/projetos/the-gentleman-desktop.jpg';
-import gentlemanMobile from '../assets/projetos/the-gentleman-mobile.jpg';
-import dalBarberDesktop from '../assets/projetos/dal-barber-desktop.jpg';
-import dalBarberMobile from '../assets/projetos/dal-barber-mobile.jpg';
+import urbanDesktop from '../assets/projetos/urban-fade-desktop.png';
+import urbanMobile from '../assets/projetos/urban-fade-mobile.png';
+import gentlemanDesktop from '../assets/projetos/the-gentleman-desktop.png';
+import gentlemanMobile from '../assets/projetos/the-gentleman-mobile.png';
+import dalBarberDesktop from '../assets/projetos/dal-barber-desktop.png';
+import dalBarberMobile from '../assets/projetos/dal-barber-mobile.png';
 
 export interface Projeto {
   nome: string;
