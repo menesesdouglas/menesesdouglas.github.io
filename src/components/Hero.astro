@@ -1,0 +1,71 @@
+---
+import Mockup from './Mockup.astro';
+import { whatsappUrl, site } from '../data/site';
+---
+
+<section id="hero" class="relative">
+  <div class="mx-auto max-w-6xl px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="grid items-center gap-16 md:grid-cols-12 md:gap-12">
+      <!-- Coluna de texto -->
+      <div class="md:col-span-7">
+        <p class="mono-label flex items-center gap-2.5" data-reveal>
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent"></span>
+          {site.papel} · {site.empresa}
+        </p>
+
+        <h1
+          class="mt-7 text-[clamp(2.1rem,5.4vw,3.9rem)]"
+          data-reveal
+          style="--reveal-delay:60ms"
+        >
+          Sites e softwares <span class="underline-accent">sob medida</span>.<br />
+          Sem template, sem enrolação.
+        </h1>
+
+        <p
+          class="mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-muted"
+          data-reveal
+          style="--reveal-delay:120ms"
+        >
+          Sou engenheiro de computação e desenvolvo landing pages, sites e
+          softwares customizados para negócios locais e pequenas empresas que
+          querem profissionalizar a presença digital sem pagar preço de agência.
+        </p>
+
+        <div
+          class="mt-10 flex flex-wrap items-center gap-3"
+          data-reveal
+          style="--reveal-delay:180ms"
+        >
+          <a class="btn btn-primary" href={whatsappUrl} target="_blank" rel="noopener">
+            Falar no WhatsApp
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M8 7h9v9" />
+            </svg>
+          </a>
+
+          <a class="btn btn-ghost" href="#portfolio">Ver projetos</a>
+        </div>
+
+        <ul
+          class="mono-label mt-14 flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-6"
+          data-reveal
+          style="--reveal-delay:240ms"
+        >
+          <li>Resposta em até 24h</li>
+          <li>Contrato e nota fiscal</li>
+          <li>{site.cidade}</li>
+        </ul>
+      </div>
+
+      <!-- Coluna visual -->
+      <div class="relative md:col-span-5" data-reveal style="--reveal-delay:200ms">
+        <Mockup url="https://urban-fade-three.vercel.app/" />
+
+        <div class="absolute -bottom-12 -left-10 hidden w-[124px] lg:block">
+          <Mockup url="https://urban-fade-three.vercel.app/" variant="phone" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

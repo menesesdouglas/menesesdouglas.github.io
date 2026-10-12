@@ -1,0 +1,85 @@
+---
+import { site, whatsappUrl } from '../data/site';
+
+const ano = new Date().getFullYear();
+
+const contatos = [
+  { label: 'WhatsApp', href: whatsappUrl },
+  { label: 'E-mail', href: `mailto:${site.email}` },
+];
+
+const redes = [
+  { label: 'GitHub', href: site.github },
+  { label: 'LinkedIn', href: site.linkedin },
+  { label: 'Instagram', href: site.instagram },
+];
+
+// Monta a linha institucional sem deixar "CNPJ null" solto.
+// Enquanto site.cnpj for null, renderiza apenas "Farol Labs".
+const linhaInstitucional = [site.empresa, site.cnpj && `CNPJ ${site.cnpj}`]
+  .filter(Boolean)
+  .join(' · ');
+---
+
+<footer class="border-t border-white/10 bg-ink text-paper/65">
+  <div class="mx-auto max-w-6xl px-6 py-16">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-6">
+        <p class="font-mono text-[15px] text-paper">
+          {site.nome}<span class="text-accent" aria-hidden="true">_</span>
+        </p>
+        <p class="mt-4 text-sm leading-relaxed">{linhaInstitucional}</p>
+        <p class="mt-1 text-sm leading-relaxed">
+          {site.cidade} · {site.atendimento}
+        </p>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="mono-label text-paper/40">Contato</p>
+        <ul class="mt-5 space-y-2.5 text-sm">
+          {
+            contatos.map((item) => (
+              <li>
+                <a
+                  class="transition-colors hover:text-paper"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="mono-label text-paper/40">Redes</p>
+        <ul class="mt-5 space-y-2.5 text-sm">
+          {
+            redes.map((item) => (
+              <li>
+                <a
+                  class="transition-colors hover:text-paper"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-16 flex flex-col gap-3 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between"
+    >
+      <p class="mono-label text-paper/35">© {ano} {site.empresa}</p>
+      <p class="mono-label text-paper/35">Desenvolvido por mim — sem template.</p>
+    </div>
+  </div>
+</footer>

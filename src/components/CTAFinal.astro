@@ -1,0 +1,38 @@
+---
+import { whatsappUrl, site } from '../data/site';
+---
+
+<section class="bg-ink text-paper">
+  <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="grid items-end gap-10 md:grid-cols-12 md:gap-12">
+      <div class="md:col-span-8" data-reveal>
+        <p class="mono-label text-paper/45">05 / Contato</p>
+
+        <h2 class="mt-6 text-[clamp(1.75rem,4.2vw,3rem)] text-paper">
+          Tem um problema que precisa de solução digital? Vamos conversar.
+        </h2>
+
+        <p class="mt-6 max-w-lg text-[15px] leading-relaxed text-paper/60">
+          Me conta o que está travando o seu negócio. Eu te digo se dá pra
+          resolver com código — e quanto custa.
+        </p>
+      </div>
+
+      <div class="md:col-span-4 md:justify-self-end" data-reveal style="--reveal-delay:100ms">
+        <a
+          class="btn bg-paper text-ink hover:bg-accent hover:text-white"
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener"
+        >
+          Chamar no WhatsApp
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17 17 7M8 7h9v9" />
+          </svg>
+        </a>
+
+        <p class="mono-label mt-5 text-paper/40">{site.atendimento}</p>
+      </div>
+    </div>
+  </div>
+</section>

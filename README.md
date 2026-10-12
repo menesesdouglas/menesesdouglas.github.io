@@ -1,1 +1,0 @@
-# menesesdouglas.github.io

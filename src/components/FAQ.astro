@@ -1,0 +1,42 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { faq } from '../data/faq';
+---
+
+<section id="faq">
+  <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <SectionHeading
+      numero="04"
+      titulo="Perguntas frequentes"
+      descricao="Sem rodeio. Se a sua pergunta não estiver aqui, me chama no WhatsApp."
+    />
+
+    <div class="mt-14 border-t border-line" data-reveal>
+      {
+        faq.map((item, i) => (
+          <details class="faq border-b border-line">
+            <summary class="flex items-start gap-5 py-6 md:gap-8">
+              <span class="mono-label mt-[3px] shrink-0">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              <span class="flex-1 font-mono text-[15px] leading-snug text-ink md:text-base">
+                {item.pergunta}
+              </span>
+
+              <span class="faq__icon mt-1.5" aria-hidden="true" />
+            </summary>
+
+            <div class="faq__body">
+              <div>
+                <p class="max-w-2xl pb-7 text-[15px] leading-relaxed text-muted md:pl-13">
+                  {item.resposta}
+                </p>
+              </div>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
