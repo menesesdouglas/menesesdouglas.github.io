@@ -1,6 +1,8 @@
 ---
 import Mockup from './Mockup.astro';
 import { whatsappUrl, site } from '../data/site';
+import urbanDesktop from '../assets/projetos/urban-fade-desktop.jpg';
+import urbanMobile from '../assets/projetos/urban-fade-mobile.jpg';
 ---
 
 <section id="hero" class="relative">
@@ -60,10 +62,19 @@ import { whatsappUrl, site } from '../data/site';
 
       <!-- Coluna visual -->
       <div class="relative md:col-span-5" data-reveal style="--reveal-delay:200ms">
-        <Mockup url="https://urban-fade-three.vercel.app/" />
+        <Mockup
+          url="https://urban-fade-three.vercel.app/"
+          src={urbanDesktop}
+          alt="Site do Urban Fade em desktop"
+        />
 
         <div class="absolute -bottom-12 -left-10 hidden w-[124px] lg:block">
-          <Mockup url="https://urban-fade-three.vercel.app/" variant="phone" />
+          <Mockup
+            url="https://urban-fade-three.vercel.app/"
+            src={urbanMobile}
+            alt="Site do Urban Fade em celular"
+            variant="phone"
+          />
         </div>
       </div>
     </div>

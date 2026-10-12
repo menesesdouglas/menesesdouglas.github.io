@@ -1,12 +1,20 @@
+import urbanDesktop from '../assets/projetos/urban-fade-desktop.jpg';
+import urbanMobile from '../assets/projetos/urban-fade-mobile.jpg';
+import gentlemanDesktop from '../assets/projetos/the-gentleman-desktop.jpg';
+import gentlemanMobile from '../assets/projetos/the-gentleman-mobile.jpg';
+import dalBarberDesktop from '../assets/projetos/dal-barber-desktop.jpg';
+import dalBarberMobile from '../assets/projetos/dal-barber-mobile.jpg';
+
 export interface Projeto {
   nome: string;
   url: string;
   contexto: string;
   estilo: string;
+  imagemDesktop: ImageMetadata;
+  imagemMobile: ImageMetadata;
   problema: string;
   solucao: string[];
-  /** PENDENTE (decisão #5) — preencha quando tiver número real.
-   *  Enquanto for null, o card simplesmente não renderiza a linha. */
+  /** Preencha quando tiver número real. Enquanto `null`, o card omite. */
   resultado: string | null;
 }
 
@@ -16,6 +24,8 @@ export const projetos: Projeto[] = [
     url: 'https://urban-fade-three.vercel.app/',
     contexto: 'Landing page para barbearia com foco em agendamento via WhatsApp.',
     estilo: 'Urbano · Direto',
+    imagemDesktop: urbanDesktop,
+    imagemMobile: urbanMobile,
     problema:
       'Agendamento só por telefone, sem presença digital e sem canal direto com o cliente.',
     solucao: [
@@ -30,6 +40,8 @@ export const projetos: Projeto[] = [
     url: 'https://barb-the-gentleman.vercel.app/',
     contexto: 'Landing page para barbearia premium.',
     estilo: 'Premium · Ritualístico',
+    imagemDesktop: gentlemanDesktop,
+    imagemMobile: gentlemanMobile,
     problema:
       'Serviço de ticket alto que precisava comunicar valor antes do primeiro contato.',
     solucao: [
@@ -44,6 +56,8 @@ export const projetos: Projeto[] = [
     url: 'https://lp-dalbarber.vercel.app/',
     contexto: 'Landing page para barbearia acessível.',
     estilo: 'Acessível · Familiar',
+    imagemDesktop: dalBarberDesktop,
+    imagemMobile: dalBarberMobile,
     problema:
       'Público de bairro que precisa entender rápido o que é oferecido e quanto custa.',
     solucao: [

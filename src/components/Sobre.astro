@@ -1,14 +1,8 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import { Image } from 'astro:assets';
 import { site } from '../data/site';
-
-/**
- * PENDENTE: foto profissional em tom warm.
- * Importe a imagem e descomente o <Image /> abaixo:
- *
- *   import foto from '../assets/sobre.jpg';
- *   <Image src={foto} alt="..." class="h-full w-full object-cover" />
- */
+import foto from '../assets/sobre/douglas-sobre.jpg';
 ---
 
 <section id="sobre">
@@ -21,9 +15,14 @@ import { site } from '../data/site';
         <div
           class="relative aspect-4/5 w-full overflow-hidden rounded-sm border border-line bg-paper-deep"
         >
-          <div class="absolute inset-0 flex items-center justify-center">
-            <p class="mono-label">Foto · 4:5</p>
-          </div>
+          <Image
+            src={foto}
+            alt={`Foto de ${site.nomeCompleto}`}
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 92vw, 30vw"
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
         </div>
       </div>
 
