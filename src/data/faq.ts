@@ -7,7 +7,7 @@ export const faq: FaqItem[] = [
   {
     pergunta: 'Quanto custa uma LP, um site ou um software?',
     resposta:
-      'Landing page: a partir de R$ 300, dependendo de seções e integrações. Site institucional: entre R$ 1.200 e R$ 3.000, conforme o número de páginas. Software sob medida: começa em R$ 5.000 e depende do escopo — nesse caso eu levanto os requisitos antes de fechar qualquer valor. O orçamento é fechado antes de começar. Não existe cobrança surpresa no meio do projeto.',
+      'Landing page: a partir de R$ 300, dependendo de seções e integrações. Site institucional: entre R$ 1.200 e R$ 3.000, conforme o número de páginas. Software sob medida: começa em R$ 5.000 e depende do escopo — nesse caso eu levanto os requisitos antes de fechar qualquer valor. O orçamento é fechado antes de começar. O valor combinado no início é o que vale até a entrega.',
   },
   {
     pergunta: 'Quanto tempo leva?',
@@ -37,6 +37,6 @@ export const faq: FaqItem[] = [
   {
     pergunta: 'Por que contratar você e não uma agência?',
     resposta:
-      'Porque você fala direto com quem escreve o código. Não tem gerente de conta, não tem repasse para terceirizado, não tem template comprado sendo revendido como projeto. Isso significa resposta mais rápida, ajuste mais barato e um site que ninguém mais tem igual. Em troca, você não vai ter uma equipe de 12 pessoas na reunião — vai ter uma pessoa que resolve.',
+      'Porque você fala direto com quem escreve o código, do primeiro esboço até a entrega. Isso costuma significar respostas mais rápidas e ajustes mais baratos ao longo do projeto. Em troca, você não vai ter uma equipe grande na reunião — vai ter uma pessoa dedicada, que conhece o seu projeto por dentro.',
   },
 ];

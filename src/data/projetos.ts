@@ -32,7 +32,7 @@ export const projetos: Projeto[] = [
       'Agendamento só por telefone, sem presença digital e sem canal direto com o cliente.',
     solucao: [
       'Página única com CTA de WhatsApp fixo e horários visíveis sem scroll.',
-      'Identidade urbana construída do zero — nenhum template de mercado.',
+      'Identidade urbana construída do zero, alinhada ao público do bairro.',
       'Carregamento otimizado para 4G, sem biblioteca de animação pesada.',
     ],
     resultado: null,
@@ -81,7 +81,7 @@ export const projetos: Projeto[] = [
       'Empresas em modelo híbrido e home office precisam de avaliação ergonômica conforme a NR-17, mas auditorias presenciais são caras, lentas e interrompem a operação.',
     solucao: [
       'Programa remoto de três etapas: diagnóstico, laudo e acompanhamento — sem visita obrigatória.',
-      'Estrutura de página orientada a objeções: validade legal do laudo, prazo de 48h e ausência de instalação de software.',
+      'Estrutura que antecipa as dúvidas mais comuns: validade legal do laudo, prazo de 48h e ausência de instalação de software.',
       'Copy técnica e direta que traduz a NR-17 em um processo compreensível para gestores, com contato via WhatsApp sem formulário intermediário.',
     ],
     resultado: null,
