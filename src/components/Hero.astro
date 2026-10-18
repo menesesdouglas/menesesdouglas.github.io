@@ -2,16 +2,14 @@
 import Mockup from './Mockup.astro';
 import { whatsappUrl, site } from '../data/site';
 import urbanDesktop from '../assets/projetos/urban-fade-desktop.png';
-import urbanMobile from '../assets/projetos/urban-fade-mobile.png';
 ---
 
 <section id="hero" class="relative">
-  <div class="mx-auto max-w-6xl px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+  <div class="mx-auto max-w-6xl px-6 pt-32 pb-24 md:pt-40 md:pb-32">
     <div class="grid items-center gap-16 md:grid-cols-12 md:gap-12">
-      <!-- Coluna de texto -->
       <div class="md:col-span-7">
         <p class="mono-label flex items-center gap-2.5" data-reveal>
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent"></span>
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-ink"></span>
           {site.papel} · {site.empresa}
         </p>
 
@@ -20,8 +18,8 @@ import urbanMobile from '../assets/projetos/urban-fade-mobile.png';
           data-reveal
           style="--reveal-delay:60ms"
         >
-          Sites e softwares <span class="underline-accent">sob medida</span>.<br />
-          Sem template, sem enrolação.
+          Seu negócio ainda não tem site.<br />
+          <span class="underline-accent">Vamos resolver isso.</span>
         </h1>
 
         <p
@@ -29,9 +27,9 @@ import urbanMobile from '../assets/projetos/urban-fade-mobile.png';
           data-reveal
           style="--reveal-delay:120ms"
         >
-          Sou engenheiro de computação e desenvolvo landing pages, sites e
-          softwares customizados para negócios locais e pequenas empresas que
-          querem profissionalizar a presença digital sem pagar preço de agência.
+          Landing pages, sites institucionais e software sob medida para PMEs
+          e MEIs que ainda estão fora da internet. Preço fechado antes de
+          começar.
         </p>
 
         <div
@@ -60,22 +58,12 @@ import urbanMobile from '../assets/projetos/urban-fade-mobile.png';
         </ul>
       </div>
 
-      <!-- Coluna visual -->
       <div class="relative md:col-span-5" data-reveal style="--reveal-delay:200ms">
         <Mockup
           url="https://urban-fade-three.vercel.app/"
           src={urbanDesktop}
           alt="Site do Urban Fade em desktop"
         />
-
-        <div class="absolute -bottom-12 -left-10 hidden w-[124px] lg:block">
-          <Mockup
-            url="https://urban-fade-three.vercel.app/"
-            src={urbanMobile}
-            alt="Site do Urban Fade em celular"
-            variant="phone"
-          />
-        </div>
       </div>
     </div>
   </div>

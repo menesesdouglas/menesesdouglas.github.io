@@ -14,8 +14,6 @@ const redes = [
   { label: 'Instagram', href: site.instagram },
 ];
 
-// Monta a linha institucional sem deixar "CNPJ null" solto.
-// Enquanto site.cnpj for null, renderiza apenas "Farol Labs".
 const linhaInstitucional = [site.empresa, site.cnpj && `CNPJ ${site.cnpj}`]
   .filter(Boolean)
   .join(' · ');
@@ -25,9 +23,7 @@ const linhaInstitucional = [site.empresa, site.cnpj && `CNPJ ${site.cnpj}`]
   <div class="mx-auto max-w-6xl px-6 py-16">
     <div class="grid gap-12 md:grid-cols-12">
       <div class="md:col-span-6">
-        <p class="font-mono text-[15px] text-paper">
-          {site.nome}<span class="text-accent" aria-hidden="true">_</span>
-        </p>
+        <p class="font-mono text-[15px] text-paper">{site.nome}</p>
         <p class="mt-4 text-sm leading-relaxed">{linhaInstitucional}</p>
         <p class="mt-1 text-sm leading-relaxed">
           {site.cidade} · {site.atendimento}
