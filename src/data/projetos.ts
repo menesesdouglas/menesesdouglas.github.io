@@ -4,6 +4,8 @@ import gentlemanDesktop from '../assets/projetos/the-gentleman-desktop.png';
 import gentlemanMobile from '../assets/projetos/the-gentleman-mobile.png';
 import dalBarberDesktop from '../assets/projetos/dal-barber-desktop.png';
 import dalBarberMobile from '../assets/projetos/dal-barber-mobile.png';
+import ergoVitalDesktop from '../assets/projetos/ergovital-desktop.png';
+import ergoVitalMobile from '../assets/projetos/ergovital-mobile.png';
 
 export interface Projeto {
   nome: string;
@@ -64,6 +66,23 @@ export const projetos: Projeto[] = [
       'Estrutura objetiva: serviço, preço e contato na primeira dobra.',
       'Linguagem visual calorosa, sem parecer corporativo.',
       'Publicação estática — custo de hospedagem próximo de zero.',
+    ],
+    resultado: null,
+  },
+  {
+    nome: 'ErgoVital',
+    url: 'https://ergovital.vercel.app/',
+    contexto:
+      'Landing page B2B para consultoria em ergonomia corporativa e conformidade com a NR-17.',
+    estilo: 'Técnico · Confiável',
+    imagemDesktop: ergoVitalDesktop,
+    imagemMobile: ergoVitalMobile,
+    problema:
+      'Empresas em modelo híbrido e home office precisam de avaliação ergonômica conforme a NR-17, mas auditorias presenciais são caras, lentas e interrompem a operação.',
+    solucao: [
+      'Programa remoto de três etapas: diagnóstico, laudo e acompanhamento — sem visita obrigatória.',
+      'Estrutura de página orientada a objeções: validade legal do laudo, prazo de 48h e ausência de instalação de software.',
+      'Copy técnica e direta que traduz a NR-17 em um processo compreensível para gestores, com contato via WhatsApp sem formulário intermediário.',
     ],
     resultado: null,
   },
