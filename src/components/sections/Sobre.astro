@@ -1,0 +1,47 @@
+---
+import SectionTitle from "../ui/SectionTitle.astro";
+---
+<section id="sobre" class="sobre">
+  <SectionTitle
+    eyebrow="Sobre"
+    title="Quem sou"
+  />
+  <div class="content">
+    <p>
+      Sou estudante de <strong>Engenharia da Computação</strong> com experiência prática
+      em suporte de TI em ambientes corporativos — ERPs, sistemas hospitalares (HIS/RIS/PACS)
+      e integrações via API. Essa vivência me mostrou, de dentro, como software real
+      precisa ser confiável, auditável e resiliente.
+    </p>
+    <p>
+      Hoje direciono meus estudos para <strong>backend, engenharia de software
+      e inteligência artificial</strong>, construindo projetos que aplicam arquitetura,
+      segurança e boas práticas de código — não apenas interfaces bonitas.
+      O MarcWeb é o exemplo mais concreto dessa escolha.
+    </p>
+    <p>
+      Acredito que a melhor forma de aprender engenharia é <strong>construir sistemas
+      que resolvem problemas concretos</strong>. É o que você encontra nos projetos abaixo.
+    </p>
+  </div>
+</section>
+
+<style>
+  .sobre { padding: var(--space-12) 0; }
+  .content {
+    max-width: 46rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .content p {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  .content strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+</style>

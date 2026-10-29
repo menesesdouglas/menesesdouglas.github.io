@@ -1,0 +1,55 @@
+---
+import { site } from "../../data/site";
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container inner">
+    <p class="copy">
+      © {year} {site.nome} · Construído com <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+    </p>
+    <ul class="links">
+      <li><a href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href={`mailto:${site.email}`}>E-mail</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-16);
+    padding: var(--space-8) 0;
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .copy {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+  .copy a {
+    color: var(--color-text-soft);
+  }
+  .links {
+    display: flex;
+    gap: var(--space-6);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .links a {
+    color: var(--color-text-soft);
+    font-size: 0.875rem;
+    transition: color var(--transition);
+  }
+  .links a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+</style>

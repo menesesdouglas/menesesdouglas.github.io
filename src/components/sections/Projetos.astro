@@ -1,0 +1,34 @@
+---
+import { projetos } from "../../data/projetos";
+import SectionTitle from "../ui/SectionTitle.astro";
+import ProjectCard from "../ProjectCard.astro";
+
+const ordenados = [...projetos].sort((a, b) => {
+  if (a.destaque && !b.destaque) return -1;
+  if (!a.destaque && b.destaque) return 1;
+  return 0;
+});
+---
+<section id="projetos" class="projetos-section">
+  <SectionTitle
+    eyebrow="Projetos"
+    title="O que estou construindo"
+    description="Sistemas reais com foco em arquitetura, segurança e boas práticas de engenharia."
+  />
+  <div class="grid">
+    {ordenados.map((p) => <ProjectCard projeto={p} />)}
+  </div>
+</section>
+
+<style>
+  .projetos-section { padding: 3rem 0; }
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid > :global(.card.destaque) { grid-column: 1 / -1; }
+  }
+</style>

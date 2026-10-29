@@ -1,89 +1,151 @@
-import urbanDesktop from '../assets/projetos/urban-fade-desktop.png';
-import urbanMobile from '../assets/projetos/urban-fade-mobile.png';
-import gentlemanDesktop from '../assets/projetos/the-gentleman-desktop.png';
-import gentlemanMobile from '../assets/projetos/the-gentleman-mobile.png';
-import dalBarberDesktop from '../assets/projetos/dal-barber-desktop.png';
-import dalBarberMobile from '../assets/projetos/dal-barber-mobile.png';
-import ergoVitalDesktop from '../assets/projetos/ergovital-desktop.png';
-import ergoVitalMobile from '../assets/projetos/ergovital-mobile.png';
+export type StatusProjeto = "em-dev" | "planejamento" | "concluido";
+
+export interface DetalheSecao {
+  titulo: string;
+  paragrafos: string[];
+}
 
 export interface Projeto {
-  nome: string;
-  url: string;
-  contexto: string;
-  estilo: string;
-  imagemDesktop: ImageMetadata;
-  imagemMobile: ImageMetadata;
-  problema: string;
-  solucao: string[];
-  /** Preencha quando tiver número real. Enquanto `null`, o card omite. */
-  resultado: string | null;
+  slug: string;
+  titulo: string;
+  subtitulo: string;
+  status: StatusProjeto;
+  categoria: string;
+  resumo: string;
+  stack: string[];
+  linkGithub: string | null;
+  linkDemo: string | null;
+  destaque: boolean;
+  detalhes: DetalheSecao[];
 }
 
 export const projetos: Projeto[] = [
   {
-    nome: 'Urban Fade',
-    url: 'https://urban-fade-three.vercel.app/',
-    contexto: 'Landing page para barbearia com foco em agendamento via WhatsApp.',
-    estilo: 'Urbano · Direto',
-    imagemDesktop: urbanDesktop,
-    imagemMobile: urbanMobile,
-    problema:
-      'Agendamento só por telefone, sem presença digital e sem canal direto com o cliente.',
-    solucao: [
-      'Página única com CTA de WhatsApp fixo e horários visíveis sem scroll.',
-      'Identidade urbana construída do zero, alinhada ao público do bairro.',
-      'Carregamento otimizado para 4G, sem biblioteca de animação pesada.',
+    slug: "marcweb",
+    titulo: "MarcWeb",
+    subtitulo: "Sistema de Registro Eletrônico de Ponto",
+    status: "em-dev",
+    categoria: "Backend · Full-stack",
+    resumo:
+      "API REST em FastAPI + PostgreSQL com autenticação JWT stateless, migrações via Alembic e regras de integridade inspiradas na Portaria 671 do MTE. Frontend em React (Vite).",
+    stack: ["Python", "FastAPI", "PostgreSQL", "React", "JWT", "SQLAlchemy", "Alembic"],
+    linkGithub: "https://github.com/menesesdouglas/MarcWeb",
+    linkDemo: null,
+    destaque: true,
+    detalhes: [
+      {
+        titulo: "Contexto",
+        paragrafos: [
+          "Sistemas de registro de ponto tradicionais falham em três frentes críticas: integridade de dados, auditabilidade e conformidade com a Portaria 671 do MTE — que exige timestamp gerado por equipamento independente do terminal do trabalhador.",
+          "O MarcWeb é minha tentativa de endereçar essas três frentes com arquitetura limpa e segura desde o primeiro commit.",
+        ],
+      },
+      {
+        titulo: "Problema",
+        paragrafos: [
+          "Registros precisam ser imutáveis após a marcação; o timestamp deve vir do servidor (nunca do cliente); perfis de funcionário e administrador precisam de permissões claras; e toda ação relevante deve ser rastreável.",
+          "Regra de ouro do projeto: regras de negócio não podem vazar para o frontend.",
+        ],
+      },
+      {
+        titulo: "Arquitetura",
+        paragrafos: [
+          "Backend em FastAPI servindo como única fonte de verdade, PostgreSQL com migrações versionadas via Alembic, ORM SQLAlchemy, autenticação JWT stateless e frontend SPA em React consumindo apenas endpoints autenticados.",
+          "Decisões críticas: timestamp gerado exclusivamente pelo servidor, registros append-only (proibição de exclusão), senhas com hash bcrypt e separação de perfis validada no middleware.",
+        ],
+      },
+      {
+        titulo: "O que estou aprendendo",
+        paragrafos: [
+          "Este projeto tem sido meu principal laboratório de engenharia de software aplicada: modelagem relacional, autenticação segura, migrações e a disciplina de manter regras de negócio no backend mesmo quando é tentador deixar o frontend 'resolver'.",
+        ],
+      },
     ],
-    resultado: null,
   },
   {
-    nome: 'The Gentleman',
-    url: 'https://barb-the-gentleman.vercel.app/',
-    contexto: 'Landing page para barbearia premium.',
-    estilo: 'Premium · Ritualístico',
-    imagemDesktop: gentlemanDesktop,
-    imagemMobile: gentlemanMobile,
-    problema:
-      'Serviço de ticket alto que precisava comunicar valor antes do primeiro contato.',
-    solucao: [
-      'Hierarquia visual que apresenta o ritual de atendimento antes do preço.',
-      'Tipografia e espaçamento reforçando posicionamento premium.',
-      'Fluxo de contato direto, sem formulário intermediário.',
+    slug: "prazzo",
+    titulo: "Prazzo",
+    subtitulo: "SaaS de Controle de Prazos de Documentos",
+    status: "planejamento",
+    categoria: "Backend · Full-stack",
+    resumo:
+      "SaaS para monitoramento de vencimentos de documentos, com arquitetura REST + SPA reaproveitada do MarcWeb: FastAPI, PostgreSQL, JWT e React. Recomeçado do zero após uma primeira tentativa que fugiu do escopo.",
+    stack: ["Python", "FastAPI", "PostgreSQL", "React", "JWT", "SQLAlchemy", "Alembic"],
+    linkGithub: null,
+    linkDemo: null,
+    destaque: false,
+    detalhes: [
+      {
+        titulo: "Contexto",
+        paragrafos: [
+          "Profissionais autônomos e pequenas empresas perdem prazos críticos de documentos — contratos, certidões, alvarás — por falta de um sistema centralizado de monitoramento e alerta. O Prazzo nasce como SaaS para resolver isso.",
+          "Após uma primeira tentativa que saiu completamente do planejado, o projeto está sendo recomeçado do zero — agora com uma arquitetura deliberada e consolidada.",
+        ],
+      },
+      {
+        titulo: "Por que recomeçar",
+        paragrafos: [
+          "A versão inicial cresceu sem disciplina arquitetural: domínio misturado com controllers, lógica de prazos vazando para o frontend e testes impossíveis de escrever. Em vez de remendar, decidi recomeçar aplicando desde o dia zero os mesmos princípios que uso no MarcWeb.",
+          "Essa decisão custou semanas de trabalho descartado — mas foi a escolha de engenharia correta. É mais valioso ter um sistema bem estruturado do que um sistema que 'funciona' e não pode evoluir.",
+        ],
+      },
+      {
+        titulo: "Arquitetura (reaproveitada do MarcWeb)",
+        paragrafos: [
+          "Como o MarcWeb já validou o stack e os padrões, o Prazzo reutiliza a mesma base arquitetural: API REST em FastAPI como única fonte de verdade, PostgreSQL com migrações via Alembic, ORM SQLAlchemy, autenticação JWT stateless e frontend SPA em React.",
+          "O que muda é o domínio: em vez de registro de ponto, o núcleo é o cálculo de prazos e a geração de alertas proativos. Regras de vencimento ficam isoladas no backend, testáveis de forma independente.",
+        ],
+      },
+      {
+        titulo: "Escopo planejado",
+        paragrafos: [
+          "Cadastro de documentos com data de emissão e vencimento; categorização por tipo (contrato, certidão, licença); alertas configuráveis (7, 15, 30 dias antes); multi-usuário com isolamento por conta; dashboard consolidado de vencimentos próximos; API REST documentada com OpenAPI.",
+          "Objetivo secundário: consolidar experiência com o stack que já uso, aprofundando em testes automatizados, containerização com Docker e deploy contínuo.",
+        ],
+      },
     ],
-    resultado: null,
   },
   {
-    nome: 'DaL Barber',
-    url: 'https://lp-dalbarber.vercel.app/',
-    contexto: 'Landing page para barbearia acessível.',
-    estilo: 'Acessível · Familiar',
-    imagemDesktop: dalBarberDesktop,
-    imagemMobile: dalBarberMobile,
-    problema:
-      'Público de bairro que precisa entender rápido o que é oferecido e quanto custa.',
-    solucao: [
-      'Estrutura objetiva: serviço, preço e contato na primeira dobra.',
-      'Linguagem visual calorosa, sem parecer corporativo.',
-      'Publicação estática — custo de hospedagem próximo de zero.',
+    slug: "dal-barber",
+    titulo: "DaL Barber",
+    subtitulo: "Landing page para barbearia",
+    status: "concluido",
+    categoria: "Frontend · Fundamentos",
+    resumo:
+      "Landing page responsiva para uma barbearia de pequeno porte. Primeiro projeto de ciclo completo — da ideia à publicação — focado em consolidar fundamentos de HTML, CSS, JavaScript e design responsivo.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    linkGithub: null,
+    linkDemo: null,
+    destaque: false,
+    detalhes: [
+      {
+        titulo: "Contexto",
+        paragrafos: [
+          "Uma barbearia de pequeno porte dependia exclusivamente de redes sociais e boca a boca para captar clientes. Faltava uma presença online organizada — um lugar único com informações, serviços, preços e contato.",
+          "O DaL Barber foi meu primeiro projeto de ciclo completo: da conversa com o 'cliente' (nesse caso, um conhecido dono de barbearia) até a publicação do site.",
+        ],
+      },
+      {
+        titulo: "O que foi construído",
+        paragrafos: [
+          "Landing page estática com seções de apresentação, serviços oferecidos, galeria de trabalhos e canais de contato. Design responsivo pensado para uso no celular — que é de onde a maioria dos clientes chega.",
+          "Stack intencionalmente mínima (HTML, CSS e JavaScript puros), escolhida para consolidar fundamentos antes de partir para frameworks.",
+        ],
+      },
+      {
+        titulo: "O que aprendi",
+        paragrafos: [
+          "Este projeto foi onde aprendi a pensar em ciclo completo: entender o problema antes do código, estruturar informação, aplicar design responsivo e publicar algo real.",
+          "Também foi meu primeiro contato com a diferença entre 'site que funciona' e 'site que serve ao usuário' — hierarquia visual, contraste, tempo de carregamento e clareza de CTA.",
+        ],
+      },
+      {
+        titulo: "Evolução a partir daqui",
+        paragrafos: [
+          "O DaL Barber cumpriu o papel de me apresentar ao desenvolvimento web. Mas uma landing page estática tem teto técnico baixo: sem backend, sem autenticação, sem lógica de negócio complexa.",
+          "Essa limitação foi exatamente o que me motivou a estudar backend e arquitetura — e o que me levou ao MarcWeb e ao Prazzo. Hoje olho para o DaL Barber como o ponto de partida da minha trajetória, não como o tipo de projeto que quero entregar daqui pra frente.",
+        ],
+      },
     ],
-    resultado: null,
-  },
-  {
-    nome: 'ErgoVital',
-    url: 'https://ergovital.vercel.app/',
-    contexto:
-      'Landing page B2B para consultoria em ergonomia corporativa e conformidade com a NR-17.',
-    estilo: 'Técnico · Confiável',
-    imagemDesktop: ergoVitalDesktop,
-    imagemMobile: ergoVitalMobile,
-    problema:
-      'Empresas em modelo híbrido e home office precisam de avaliação ergonômica conforme a NR-17, mas auditorias presenciais são caras, lentas e interrompem a operação.',
-    solucao: [
-      'Programa remoto de três etapas: diagnóstico, laudo e acompanhamento — sem visita obrigatória.',
-      'Estrutura que antecipa as dúvidas mais comuns: validade legal do laudo, prazo de 48h e ausência de instalação de software.',
-      'Copy técnica e direta que traduz a NR-17 em um processo compreensível para gestores, com contato via WhatsApp sem formulário intermediário.',
-    ],
-    resultado: null,
   },
 ];

@@ -1,0 +1,52 @@
+---
+import { site } from "../../data/site";
+import Button from "../ui/Button.astro";
+---
+<section id="hero" class="hero">
+  <p class="eyebrow">Portfólio técnico</p>
+  <h1>{site.nome}</h1>
+  <p class="titulo">{site.titulo}</p>
+  <p class="descricao">{site.descricao}</p>
+  <div class="ctas">
+    <Button href="#projetos">Ver projetos</Button>
+    <Button href={site.github} variant="ghost" external>GitHub</Button>
+    <Button href={site.linkedin} variant="ghost" external>LinkedIn</Button>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 5rem 0 3rem;
+    max-width: 46rem;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 1rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 1rem;
+  }
+  .titulo {
+    font-size: 1.125rem;
+    color: var(--color-text-soft);
+    margin: 0 0 1.5rem;
+    font-weight: 500;
+  }
+  .descricao {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 2rem;
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>

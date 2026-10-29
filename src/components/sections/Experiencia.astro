@@ -1,0 +1,144 @@
+---
+import SectionTitle from "../ui/SectionTitle.astro";
+
+interface ExpItem {
+  cargo: string;
+  empresa: string;
+  periodo: string;
+  resumo: string;
+  tags: string[];
+}
+
+const experiencias: ExpItem[] = [
+  {
+    cargo: "Analista de Suporte N1 Jr I",
+    empresa: "Wellon Digital",
+    periodo: "Out 2026 — Atual",
+    resumo:
+      "Suporte a ecossistema SaaS em saúde. Diagnóstico de bugs, integrações via API (ERP, HIS, RIS, PACS), configuração de automações e assistentes virtuais com IA.",
+    tags: ["Suporte N1", "Integrações API", "IA aplicada", "Health Tech"],
+  },
+  {
+    cargo: "Analista de Suporte Técnico",
+    empresa: "Splendor Informática",
+    periodo: "Nov 2025 — Out 2026",
+    resumo:
+      "Gestão de 80+ chamados/mês (SLA > 95%) e atualizações remotas do ERP BlessSolution em 15+ clientes, com testes de regressão.",
+    tags: ["ERP", "SLA", "Testes de Regressão"],
+  },
+  {
+    cargo: "Recepcionista Hospitalar",
+    empresa: "Hospital Santa Emília",
+    periodo: "Jul 2024 — Abr 2026",
+    resumo:
+      "Operação do sistema TASY, suporte a equipes administrativas e colaboração em melhorias de fluxo (redução de ~15 min no tempo de espera).",
+    tags: ["TASY", "Processos", "Health Ops"],
+  },
+  {
+    cargo: "Especialista em Relacionamento Cliente I",
+    empresa: "Atento Brasil",
+    periodo: "Mar 2023 — Ago 2025",
+    resumo:
+      "Suporte técnico a 100+ usuários em aplicações corporativas, com foco em LGPD e integridade de dados. Três sugestões de automação implementadas.",
+    tags: ["LGPD", "Automação", "Suporte"],
+  },
+];
+---
+<section id="experiencia" class="exp">
+  <SectionTitle
+    eyebrow="Trajetória"
+    title="Experiência profissional em TI"
+    description="Base prática em ambientes corporativos, sistemas críticos e suporte a usuários."
+  />
+  <ol class="timeline">
+    {experiencias.map((e) => (
+      <li class="item">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="card">
+          <header>
+            <h3>{e.cargo}</h3>
+            <p class="meta">{e.empresa} · {e.periodo}</p>
+          </header>
+          <p class="resumo">{e.resumo}</p>
+          <ul class="tags">
+            {e.tags.map((t) => <li>{t}</li>)}
+          </ul>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .exp { padding: var(--space-12) 0; }
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--color-border);
+  }
+  .item {
+    position: relative;
+    padding-left: var(--space-8);
+  }
+  .dot {
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 2px solid var(--color-accent);
+  }
+  .card {
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-soft);
+  }
+  header h3 {
+    margin: 0 0 var(--space-1);
+    font-size: 1.0625rem;
+  }
+  .meta {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+  }
+  .resumo {
+    margin: var(--space-3) 0;
+    color: var(--color-text-soft);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .tags li {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: var(--color-bg-highlight);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+  }
+</style>

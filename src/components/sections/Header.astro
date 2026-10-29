@@ -1,0 +1,80 @@
+---
+import { site } from "../../data/site";
+
+const nav = [
+  { href: "#stack", label: "Stack" },
+  { href: "#projetos", label: "Projetos" },
+  { href: "#sobre", label: "Sobre" },
+  { href: "#experiencia", label: "Experiência" },
+  { href: "#competencias", label: "Competências" },
+  { href: "#contato", label: "Contato" },
+];
+---
+<header class="header">
+  <div class="container inner">
+    <a href="/" class="logo" aria-label="Início">
+      <span class="logo-mark">&lt;/&gt;</span>
+      <span class="logo-text">{site.nome}</span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: var(--space-6);
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  .logo:hover { text-decoration: none; }
+  .logo-mark {
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+    font-size: 0.875rem;
+  }
+  nav ul {
+    display: flex;
+    gap: var(--space-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    color: var(--color-text-soft);
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  nav a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  @media (max-width: 768px) {
+    nav { display: none; }
+  }
+</style>

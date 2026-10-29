@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seudominio.com.br/sitemap-index.xml
+Sitemap: https://menesesdouglas-portfolio.de5.net/sitemap.xml

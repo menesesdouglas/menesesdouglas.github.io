@@ -1,0 +1,197 @@
+---
+import Badge from "./ui/Badge.astro";
+import type { Projeto } from "../data/projetos";
+
+interface Props {
+  projeto: Projeto;
+}
+const { projeto } = Astro.props;
+
+const statusLabel: Record<Projeto["status"], string> = {
+  "em-dev": "Em desenvolvimento",
+  planejamento: "Em planejamento",
+  concluido: "Concluído",
+};
+
+const temDetalhes = projeto.detalhes.length > 0;
+---
+<article class:list={["card", { destaque: projeto.destaque }]}>
+  <div class="head">
+    <div>
+      <p class="categoria">{projeto.categoria}</p>
+      <h3>{projeto.titulo}</h3>
+      <p class="subtitulo">{projeto.subtitulo}</p>
+    </div>
+    <span class:list={["status", projeto.status]}>{statusLabel[projeto.status]}</span>
+  </div>
+
+  <p class="resumo">{projeto.resumo}</p>
+
+  <ul class="stack" aria-label="Stack do projeto">
+    {projeto.stack.map((t) => <li><Badge label={t} /></li>)}
+  </ul>
+
+  {temDetalhes && (
+    <details class="detalhes">
+      <summary>Ver detalhes técnicos</summary>
+      <div class="detalhes-content">
+        {projeto.detalhes.map((secao) => (
+          <section>
+            <h4>{secao.titulo}</h4>
+            {secao.paragrafos.map((p) => <p>{p}</p>)}
+          </section>
+        ))}
+      </div>
+    </details>
+  )}
+
+  <div class="actions">
+    {projeto.linkGithub && (
+      <a href={projeto.linkGithub} target="_blank" rel="noopener noreferrer">Ver código →</a>
+    )}
+    {projeto.linkDemo && (
+      <a href={projeto.linkDemo} target="_blank" rel="noopener noreferrer">Demo →</a>
+    )}
+    {!projeto.linkGithub && !projeto.linkDemo && (
+      <span class="soon">Repositório em breve</span>
+    )}
+  </div>
+</article>
+
+<style>
+  .card {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .card.destaque {
+    border-color: var(--color-accent);
+    background: var(--color-bg-highlight);
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .categoria {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin: 0 0 0.25rem;
+  }
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  .subtitulo {
+    margin: 0.25rem 0 0;
+    color: var(--color-text-soft);
+    font-size: 0.9375rem;
+  }
+  .status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+  }
+  .status.em-dev { background: rgba(34, 197, 94, 0.15); color: var(--color-success); }
+  .status.planejamento { background: rgba(234, 179, 8, 0.15); color: var(--color-warning); }
+  .status.concluido { background: rgba(148, 163, 184, 0.15); color: var(--color-text-soft); }
+  .resumo {
+    margin: 0;
+    color: var(--color-text-soft);
+    line-height: 1.6;
+  }
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .detalhes {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+  }
+  .detalhes summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+  }
+  .detalhes summary::-webkit-details-marker { display: none; }
+  .detalhes summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 0.75rem;
+  }
+  .detalhes[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .detalhes summary:hover {
+    text-decoration: underline;
+  }
+  .detalhes-content {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .detalhes-content h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+  }
+  .detalhes-content p {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-soft);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+  .detalhes-content p:last-child {
+    margin-bottom: 0;
+  }
+  .actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+  .actions a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+  }
+  .actions a:hover { text-decoration: underline; }
+  .soon {
+    color: var(--color-text-soft);
+    font-size: 0.875rem;
+    font-style: italic;
+  }
+</style>

@@ -1,32 +1,25 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Servicos from '../components/Servicos.astro';
-import Portfolio from '../components/Portfolio.astro';
-import Sobre from '../components/Sobre.astro';
-import FAQ from '../components/FAQ.astro';
-import CTAFinal from '../components/CTAFinal.astro';
-import Footer from '../components/Footer.astro';
-import WhatsAppFloat from '../components/WhatsAppFloat.astro';
-
-const title = 'Douglas Meneses — Engenheiro de Computação | Farol Labs';
-const description =
-  'Landing pages, sites e softwares feitos do zero para negócios locais e pequenas empresas. Orçamento fechado antes de começar. Atendimento direto com quem escreve o código.';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/sections/Hero.astro";
+import Stack from "../components/sections/Stack.astro";
+import Projetos from "../components/sections/Projetos.astro";
+import Sobre from "../components/sections/Sobre.astro";
+import Experiencia from "../components/sections/Experiencia.astro";
+import Competencias from "../components/sections/Competencias.astro";
+import Contato from "../components/sections/Contato.astro";
+import { site } from "../data/site";
 ---
-
-<BaseLayout title={title} description={description}>
-  <Header />
-
-  <main>
+<Layout
+  title={`${site.nome} — ${site.titulo}`}
+  description={site.metaDescription}
+>
+  <div class="container">
     <Hero />
-    <Servicos />
-    <Portfolio />
+    <Stack />
+    <Projetos />
     <Sobre />
-    <FAQ />
-    <CTAFinal />
-  </main>
-
-  <Footer />
-  <WhatsAppFloat />
-</BaseLayout>
+    <Experiencia />
+    <Competencias />
+    <Contato />
+  </div>
+</Layout>

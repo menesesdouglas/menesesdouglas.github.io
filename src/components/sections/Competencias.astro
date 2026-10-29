@@ -1,0 +1,62 @@
+---
+import { competencias } from "../../data/competencias";
+import SectionTitle from "../ui/SectionTitle.astro";
+---
+<section id="competencias" class="competencias-section">
+  <SectionTitle
+    eyebrow="Competências"
+    title="Conhecimentos técnicos"
+    description="Categorias técnicas que aplico em estudos e projetos."
+  />
+  <div class="grid">
+    {competencias.map((c) => (
+      <div class="card">
+        <h3>{c.categoria}</h3>
+        <ul>
+          {c.itens.map((i) => <li>{i}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .competencias-section { padding: 3rem 0; }
+  .grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .card {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-soft);
+  }
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  li {
+    color: var(--color-text-soft);
+    font-size: 0.9375rem;
+  }
+</style>
