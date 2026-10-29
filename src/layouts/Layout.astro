@@ -14,11 +14,36 @@ const canonical = new URL(
 ).toString();
 ---
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b1220" />
+
+    <!--
+      Aplica o tema ANTES do CSS pintar (evita flash):
+      - Se o usuário já escolheu manualmente → usa localStorage
+      - Se não → respeita prefers-color-scheme do sistema
+      - is:inline → roda sincronamente, sem bundle/defer
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = stored || (prefersDark ? "dark" : "light");
+
+          document.documentElement.setAttribute("data-theme", theme);
+
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            meta.setAttribute("content", theme === "light" ? "#f8fafc" : "#0b1220");
+          }
+        } catch (e) {
+          // Se localStorage falhar, mantém o padrão do HTML (dark)
+        }
+      })();
+    </script>
 
     <title>{title}</title>
     <meta name="description" content={description} />
